@@ -1,0 +1,246 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(90.06deg, #2cccff -4.45%, #22dfbf 104.12%);
+}
+
+#container {
+    background: linear-gradient(145deg, #2193b0, #6dd5ed);
+    transition: var(--transition-effect);
+    color: #fff;
+    width: 400px;
+    margin: 50px auto;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+.search-bar {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+}
+
+.search-icon {
+    margin-right: 5px;
+    position: absolute;
+    left: 0;
+}
+
+.microphone {
+    cursor: pointer;
+}
+
+.microphone .recording-icon {
+    display: none;
+    width: 10px;
+    height: 10px;
+    background-color: #e22d2d;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite linear;
+}
+
+.microphone.recording .recording-icon {
+    display: inline-block;
+}
+
+.microphone.recording .fa-microphone {
+    display: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 3px 0 rgba(173, 0, 0, .3);
+    }
+    65% {
+        box-shadow: 0 0 3px 5px rgba(173, 0, 0, .3);
+    }
+    100% {
+        box-shadow: 0 0 3px 5px rgba(173, 0, 0, 0);
+    }
+}
+
+#search-input {
+    border: 0;
+    outline: 0;
+    padding: 3px 3px 3px 20px;
+    background: transparent;
+    height: 20px;
+    color: #fff;
+}
+
+#search-input::placeholder {
+    color: rgb(206,206,206);
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    padding: 80px 50px;
+}
+
+.city-name {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.weather-state {
+    font-size: 13px;
+}
+
+.weather-icon {
+    width: 70px;
+    height: 70px;
+}
+
+.temperature {
+    font-size: 80px;
+    font-weight: lighter;
+    line-height: 1;
+    position: relative;
+}
+
+.temperature::after {
+    content: 'o';
+    position: absolute;
+    font-size: 30px;
+}
+
+.sub-section {
+    border-top: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 11px 30px;
+    font-size: 13px;
+}
+
+.sub-section .row {
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.sub-section .item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.sub-section .item .label {
+    font-weight: bold;
+}
+
+.footer {
+    padding: 64px 16px;
+    text-align: center;
+    border-top: 1px solid #fff;
+    font-size: 21px;
+  }
+
+.footer .icon a {
+    text-decoration: none;
+    padding: 0 5px;
+    color: #000;
+}
+
+.footer p {
+    font-family: 'Roboto';
+    margin-top: 10px;
+}
+
+/* hướng dẫn */
+#instructions {
+    display: block;
+    float: right;
+    margin-right: 10px;
+    margin-top: 7px;
+    /* button */
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font-family: 'Roboto';
+    font-size: 15px;
+	cursor: pointer;
+	outline: inherit;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal.open {
+    display: flex;
+}
+
+#modal .instructions-content p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-container {
+    background: #fff;
+    width: 800px;
+    max-width: calc(100% - 32px);
+    min-height: 200px;
+    position: relative;
+    animation: modalFadeIn ease .3s;
+}
+
+@keyframes modalFadeIn{
+    from {
+        opacity: 0;
+        transform: translateY(-140px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#modal #modal-close {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    font-size: 17px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#modal .modal-header {
+    background: #009688;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.modal-container .instructions-content {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 1.6;
+}

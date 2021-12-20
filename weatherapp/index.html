@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather App</title>
+        <script src="./js/all.min.js"></script>
+        <script src="./js/moment.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="./css/load.css">
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="icon" href="./img/icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="./font/themify-icons/themify-icons.css">
+        <!-- mode -->
+        <style>
+            :root{
+                --transition-effect: 0.25s cubic-bezier(.25,-0.59,.82,1.66);
+            }
+            body.color{
+                background: linear-gradient(90.06deg, #F62682 -4.45%, #6F5CF1 104.12%);
+                transition: var(--transition-effect);
+            }
+            div.colorMain {
+                background: linear-gradient(90.06deg, #f86086 -4.45%, #fe8d77 104.12%) !important;
+                transition: var(--transition-effect);
+            }
+            #wrapper {
+                display: inline-block;
+            }
+            .switchToggle{
+                width: 50px;
+                height: 29px;
+                appearance: none;
+                background: #83d8ff;
+                border-radius: 26px;
+                position: relative;
+                cursor: pointer;
+                box-shadow: inset 0px 0px 16px rgba(0, 0, 0, .3);
+                margin-top: 3px;
+                margin-left: 10px;
+                transition: var(--transition-effect);
+                position: fixed;
+            }
+            .switchToggle::before{
+                content: "";
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                top: 2.5px;
+                left: 2px;
+                background: #fff;
+                border-radius: 50%;
+                box-shadow: 0px 0px 6px rgba(0, 0, 0, .3);
+                transition: var(--transition-effect);
+            }
+            .switchToggle:checked{
+                background: #e91e63;
+            }
+            .switchToggle:checked:before{
+                left: 24px;
+            }
+        </style>
+    </head>
+    <body class="preload">
+        <!-- loading -->
+        <div class="load">
+            <div class="spiner"></div>
+        </div>
+        <!-- mode -->
+        <div id="wrapper">
+            <input type="checkbox" name="" class="switchToggle" id="changeColor">
+        </div>
+        <script>
+            var checkbox_toggle = document.getElementById('changeColor');
+            checkbox_toggle.addEventListener('change', function() {
+                document.body.classList.toggle('color');
+            });
+            checkbox_toggle.addEventListener('change', function() {
+                document.getElementById('container').classList.toggle('colorMain');
+            });
+        </script>
+        <!-- hướng dẫn -->
+        <button id="instructions">
+            <i class="fas fa-question-circle"></i>
+            <span>Hướng dẫn</span>
+        </button>
+        <!-- main -->
+        <div id="container">
+            <div class="main-section">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" name="search-city" id="search-input" placeholder="Tìm kiếm địa điểm...">
+                    <span class="microphone recording">
+                        <i class="fas fa-microphone"></i>
+                        <span class="recording-icon"></span>
+                    </span>
+                </div>
+                <div class="info-wrapper">
+                    <p class="city-name">--</p>
+                    <p class="weather-state">--</p>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="weather-icon">
+                    <p class="temperature">--</p>
+                </div>
+            </div>
+            <div class="sub-section">
+                <div class="row">
+                    <div class="item">
+                        <div class="label">Độ ẩm</div>
+                        <div class="value"><span class="humidity">--</span>%</div>
+                    </div>
+                    <div class="item">
+                        <div class="label">Tốc độ gió</div>
+                        <div class="value"><span class="wind-speed">--</span> km/h</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item">
+                        <div class="label">Mặt trời mọc</div>
+                        <div class="value sunrise">--</div>
+                    </div>
+                    <div class="item">
+                        <div class="label">Mặt trời lặn</div>
+                        <div class="value sunset">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="footer">
+            <div class="icon">
+                <a href="https://www.facebook.com/profile.php?id=100051848143411"><i class="ti-facebook"></i></a>
+                <a href="./img/khongco.jpeg"><i class="fab fa-youtube"></i></a>
+                <a href="./img/khongco.jpeg"><i class="ti-twitter"></i></a>
+                <a href="./img/khongco.jpeg"><i class="ti-instagram"></i></a>
+            </div>
+            <p>Made by Nguyen Duc</p>
+        </div>
+        <!-- hướng dẫn -->
+        <div id="modal">
+            <div class="modal-container">
+                <div class="instructions-header">
+                    <div id="modal-close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <header class="modal-header">Hướng dẫn</header>
+                </div>
+                <div class="instructions-content">
+                    <p>
+                        * Sử dụng cú pháp "thời tiết ở + 'địa điểm'" để ra lệnh cho AI xem thời tiết.
+                        <br/>* Sử dụng cú pháp "mấy giờ ?" để ra lệnh cho AI xem giờ.
+                        <br/>* Do tính năng còn hạn chế nên khi nhập địa điểm vui lòng gõ các địa danh Việt Nam không dấu và các địa danh nước ngoài bằng tiếng anh.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script src="./js/load.js"></script>
+        <script src="./js/index.js"></script>
+    </body>
+</html> 
